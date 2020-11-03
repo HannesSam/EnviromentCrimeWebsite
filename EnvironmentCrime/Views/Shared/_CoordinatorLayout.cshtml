@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "_BasicLayout";
+}
+
+<nav>
+    <ul>
+        <li><a class="reports" asp-controller="Coordinator" asp-action="StartCoordinator">Start(Ärenden)</a></li>
+        <li><a class="reportAdd" asp-controller="Coordinator" asp-action="ReportCrime">>Rapportera brott</a></li>
+        <li class="right"><a class="logout" asp-controller="Public" asp-action="LogOut">>Logga ut</a></li>
+    </ul>
+</nav><!-- End Nav -->
+
+<div id="content">
+    <h2>@ViewBag.Title</h2>
+    <p class="info">Du är inloggad som samordnare</p>
+
+    @RenderBody()

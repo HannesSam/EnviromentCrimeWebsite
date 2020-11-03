@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_BasicLayout";
+}
+
+<nav>
+    <ul>
+        <li><a class="reports"asp-controller="Investigator" asp-action="StartInvestigator">Start(Ärenden)</a></li>
+        <li class="right"><a class="logout" asp-controller="Public" asp-action="LogOut">Logga ut</a></li>
+    </ul>
+</nav><!-- End Nav -->
+
+<div id="content">
+    <h2>@ViewBag.Title</h2>
+    <p class="info">Du är inloggad som handläggare</p>
+
+    @RenderBody()

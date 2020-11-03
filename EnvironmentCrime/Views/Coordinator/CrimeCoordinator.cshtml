@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_CoordinatorLayout";
+}
+@model Department
+@await Component.InvokeAsync("Errand", ViewBag.ID)
+
+
+<section id="bottomColumn">
+    <h3>Redigera ärende</h3>
+   
+        Ange enhet:
+    <form asp-controller="Coordinator" asp-action="AssingDepartment" asp-route-ErrandID="@ViewBag.ID" method="post">
+        <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.DepartmentList, "DepartmentId", "DepartmentName"))">
+        </select>
+        <input  type="submit" value="Spara" />
+    </form>
+  
+</section>
