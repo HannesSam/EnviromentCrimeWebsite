@@ -19,8 +19,7 @@ namespace EnvironmentCrime.Models
         [Required(ErrorMessage = "Du måste fylla i typ av brott")]
         public String TypeOfCrime { get; set; }
 
-        [Required, DataType(DataType.Date),
-        DisplayFormat(DataFormatString ="{0:yyyy - MM - dd}")]
+        [Required, DataType(DataType.Date)]
         public DateTime DateOfObservation { get; set; }
         public String Observation { get; set; }
         public String InvestigatorInfo { get; set; }

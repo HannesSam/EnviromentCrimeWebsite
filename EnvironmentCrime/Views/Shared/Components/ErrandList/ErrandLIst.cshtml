@@ -12,7 +12,7 @@
     @foreach (MyErrand errand in Model)
     {
         <tr>
-            <td>@errand.DateOfObservation</td>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
             <td><a asp-controller="@ViewBag.Controller" asp-action="@ViewBag.Action" asp-route-id="@errand.ErrandId">@errand.RefNumber</a></td>
             <td>@errand.TypeOfCrime</td>
             <td>@errand.StatusName</td>

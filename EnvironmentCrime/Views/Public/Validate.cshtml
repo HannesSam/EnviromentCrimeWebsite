@@ -11,7 +11,7 @@
     </p>
     <p><span class="label">Var har brottet skett någonstans?</span><br />@Model.Place</p>
     <p><span class="label">Vilken typ av brott?</span><br />@Model.TypeOfCrime</p>
-    <p><span class="label">När skedde brottet?</span><br />@Model.DateOfObservation</p>
+    <p><span class="label">När skedde brottet?</span><br />@Model.DateOfObservation.ToShortDateString()</p>
     <p><span class="label">Ditt namn (för- och efternamn):</span><br />@Model.InformerName</p>
     <p><span class="label">Din telefon:</span><br />@Model.InformerPhone</p>
     <p><span class="label">Mer information:</span><br />@Model.Observation</p>
