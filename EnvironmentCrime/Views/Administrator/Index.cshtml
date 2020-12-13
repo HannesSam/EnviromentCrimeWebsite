@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_AdministratorLayout";
+}
+@model List<Employee>
+
+<table id="managerForm">
+
+    <tr>
+        <th>Namn</th>
+        <th>ID</th>
+        <th>Avdelning</th>
+        <th>Titel</th>
+    </tr>
+    @foreach (Employee employee in Model)
+    {
+        <tr>
+            <td>@employee.EmployeeName</td>
+            <td><a asp-controller="Administrator" asp-action="UserPage" asp-route-id="@employee.EmployeeId">@employee.EmployeeId</a></td>
+            <td>@employee.DepartmentId</td>
+            <td>@employee.RoleTitle</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "_AdministratorLayout";
+}
+
+@model Employee
+
+<h3>Användare: @Model.EmployeeId</h3>
+<section id="leftColumn">
+    <p>
+        <span class="label">Namn: </span><br />
+        @Model.EmployeeName
+    </p>
+    <p>
+        <span class="label">Titel: </span><br />
+        @Model.RoleTitle
+    </p>
+    <p>
+        <span class="label">Avdelning: </span><br />
+        @Model.DepartmentId
+    </p>
+</section>
+
+<section id="bottomColumn">
+    <form asp-controller="Administrator" asp-action="UpdateUser" asp-route-UserID="@ViewBag.ID" method="post" enctype="multipart/form-data" multiple>
+        <h3>Redigera användare</h3>
+        <p class="label">Namn:</p>
+        <textarea name="name" rows="1" cols="60"></textarea>
+
+        <p class="label">Avdelning:</p>
+        <select asp-for="DepartmentId" asp-items="@(new SelectList(ViewBag.Departments, "DepartmentId", "DepartmentName"))">
+        </select>
+
+        <p class="label">Titel:</p>
+        <select name="role">
+            <option value="Investigator">Handläggare</option>
+            <option value="Coordinator">Samordnare</option>
+            <option value="Manager">Avdelningschef</option>
+            <option value="Administrator">Administratör</option>
+        </select>
+
+        <p>
+            <input class="button" type="submit" value="Spara ändringarna" />
+        </p>
+    </form>
+</section>

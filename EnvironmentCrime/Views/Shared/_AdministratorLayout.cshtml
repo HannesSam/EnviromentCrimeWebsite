@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "_BasicLayout";
+}
+
+<nav>
+    <ul>
+        <li><a class="reports" asp-controller="Aministrator" asp-action="Index" >Start</a></li>
+        <li class="right"><a class="logout" asp-controller="Public" asp-action="LogOut">Logga ut</a></li>
+    </ul>
+</nav><!-- End Nav -->
+
+<div id="content">
+    <p class="info">Du är inloggad som administratör</p>
+
+    @RenderBody()

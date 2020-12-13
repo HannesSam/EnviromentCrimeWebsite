@@ -76,5 +76,29 @@ namespace EnvironmentCrime.Controllers
             return View("StartInvestigator", repository);
         }
 
+        public ViewResult Filter(string errandStatus)
+        {
+            if (errandStatus == "Välj alla")
+            {
+                ViewBag.errandStatus = null;
+            }
+            else
+            {
+                ViewBag.errandStatus = errandStatus;
+            }
+            ViewBag.searchString = null;
+            ViewBag.Title = "Ärenden";
+            return View("StartInvestigator", repository);
+        }
+
+        public ViewResult Search(string casenumber)
+        {
+            ViewBag.errandStatus = null;
+            ViewBag.department = null;
+            ViewBag.searchString = casenumber;
+            ViewBag.Title = "Ärenden";
+            return View("StartInvestigator", repository);
+        }
+
     }
 }

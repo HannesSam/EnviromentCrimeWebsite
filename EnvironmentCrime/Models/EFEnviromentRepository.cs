@@ -34,6 +34,15 @@ namespace EnvironmentCrime.Models
             });
         }
 
+        public Task<Employee> GetEmployee(string id)
+        {
+            return Task.Run(() =>
+            {
+                var userDetails = Employees.Where(em => em.EmployeeId == id).First();
+                return userDetails;
+            });
+        }
+
         //Save or update errand
         public string SaveErrand(Errand errand)
         {
@@ -90,6 +99,24 @@ namespace EnvironmentCrime.Models
             context.SaveChanges();
         }
 
+        public void UpdateUser(string userID, string name, string departmentID, string title)
+        {
+            Employee dbEntry = context.Employees.FirstOrDefault(em => em.EmployeeId == userID);
+            if (name != null)
+            {
+                dbEntry.EmployeeName = name;
+            }
+            if (departmentID != null)
+            {
+                dbEntry.DepartmentId = departmentID;
+            }
+            if (title != null)
+            {
+                dbEntry.RoleTitle = title;
+            }
+            context.SaveChanges();
+        }
+
         public void UpdateStatus(int errandID, string errandStatusID, string events, string information)
         {
             Errand dbEntry = context.Errands.FirstOrDefault(e => e.ErrandID == errandID);
@@ -122,25 +149,62 @@ namespace EnvironmentCrime.Models
             context.SaveChanges();
         }
 
-        public List<MyErrand> CoordinatorErrandList()
+        //Hämtar alla ärenden för handläggaren och ifall det har gjorts en sökning eller filtrering så hanteras denna här
+        public List<MyErrand> CoordinatorErrandList(string searchString, string errandStatus, string department)
         {
             IEnumerable<MyErrand> errandList = GetErrandList();
+
+            if (searchString != null)
+            {
+                errandList = errandList.Where(er => er.RefNumber == searchString);
+            } //Om båda är satta så körs en filtrering på båda
+            else if(errandStatus != null && department != null)
+            {
+                errandList = errandList.Where(er => er.StatusName == errandStatus && er.DepartmentName == department);
+            }
+            else if(errandStatus != null)
+            {
+                errandList = errandList.Where(er => er.StatusName == errandStatus);
+            }
 
             return errandList.ToList();
         }
 
-        public List<MyErrand> ManagerErrandList(string departmentId)
+        public List<MyErrand> ManagerErrandList(string departmentId, string searchString, string errandStatus, string investigator)
         {
             IEnumerable<MyErrand> errandList = GetErrandList();
             errandList = errandList.Where(e => e.DepartmentId == departmentId);
 
+            if (searchString != null)
+            {
+                errandList = errandList.Where(er => er.RefNumber == searchString);
+            }
+            else if (errandStatus != null && investigator != null)
+            {
+                errandList = errandList.Where(er => er.StatusName == errandStatus && er.EmployeeName == investigator);
+            }
+            else if (errandStatus != null)
+            {
+                errandList = errandList.Where(er => er.StatusName == errandStatus);
+            }
+
+
             return errandList.ToList();
         }
 
-        public List<MyErrand> InvestigatorErrandList(string departmentId, string userId)
+        public List<MyErrand> InvestigatorErrandList(string departmentId, string userId, string searchString, string errandStatus)
         {
             IEnumerable<MyErrand> errandList = GetErrandList();
             errandList = errandList.Where(e => e.DepartmentId == departmentId && e.EmployeeId == userId);
+
+            if (searchString != null)
+            {
+                errandList = errandList.Where(er => er.RefNumber == searchString);
+            }
+            else if (errandStatus != null)
+            {
+                errandList = errandList.Where(er => er.StatusName == errandStatus);
+            }
 
             return errandList.ToList();
         }

@@ -45,7 +45,7 @@ namespace EnvironmentCrime.Models
           new Employee { EmployeeId = "E101", EmployeeName = "Fredrik Roos", RoleTitle = "Investigator", DepartmentId = "D01" },
           new Employee { EmployeeId = "E102", EmployeeName = "Gösta Qvist", RoleTitle = "Investigator", DepartmentId = "D01" },
           new Employee { EmployeeId = "E103", EmployeeName = "Hilda Persson", RoleTitle = "Investigator", DepartmentId = "D01" },
-          new Employee { EmployeeId = "E200", EmployeeName = "Bengt Viik", RoleTitle = "manager", DepartmentId = "D02" },
+          new Employee { EmployeeId = "E200", EmployeeName = "Bengt Viik", RoleTitle = "Manager", DepartmentId = "D02" },
           new Employee { EmployeeId = "E201", EmployeeName = "Ivar Oscarsson", RoleTitle = "Investigator", DepartmentId = "D02" },
           new Employee { EmployeeId = "E202", EmployeeName = "Jenny Nordström", RoleTitle = "Investigator", DepartmentId = "D02" },
           new Employee { EmployeeId = "E203", EmployeeName = "Kurt Mild", RoleTitle = "Investigator", DepartmentId = "D02" },

@@ -95,6 +95,10 @@ namespace EnvironmentCrime.Controllers
                         {
                             return Redirect("/Investigator/StartInvestigator");
                         }
+                        if (await userManager.IsInRoleAsync(user, "Administrator"))
+                        {
+                            return Redirect("/Administrator/Index");
+                        }
                     }
                 }              
             }

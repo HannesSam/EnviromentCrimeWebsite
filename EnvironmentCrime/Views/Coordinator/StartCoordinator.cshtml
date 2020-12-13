@@ -12,27 +12,33 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td>
-            <select name="errandStatus">
-                <option selected="selected">Välj alla</option>
-                @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
-                {
-                    <option>@errandStatus.StatusName</option>
-                }
-            </select>
-        </td>
-        <td>
-            <select name="department">
-                <option selected="selected">Välj alla</option>
-                @foreach (Department department in Model.Departments)
-                {
-                    <option>@department.DepartmentName</option>
-                }
-            </select>
-        </td>
-        <td><a asp-controller="Coordinator" asp-action="Search" class="button" type="submit">Hämta lista</a></td>
-        <td><input name="casenumber" /></td>
-        <td><input class="button" type="submit" value="Sök" /></td>
+        <form asp-controller="Coordinator" asp-action="Filter" type="submit">
+            <td>
+                <select name="errandStatus">
+                    <option selected="selected">Välj alla</option>
+                    @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
+                    {
+                        <option>@errandStatus.StatusName</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <select name="department">
+                    <option selected="selected">Välj alla</option>
+                    @foreach (Department department in Model.Departments)
+                    {
+                        <option>@department.DepartmentName</option>
+                    }
+                </select>
+            </td>
+
+            <td><input class="button" value="Hämta lista" type="submit"/></td>
+        </form>
+        <form asp-controller="Coordinator" asp-action="Search" type="submit">
+            <td><input name="casenumber" /></td>
+            <td><input class="button" value="Sök" type="submit"/></td>
+        </form>
     </tr>
 </table>
-@await Component.InvokeAsync("ErrandList")
+
+@await Component.InvokeAsync("ErrandList", ViewBag.searchString)

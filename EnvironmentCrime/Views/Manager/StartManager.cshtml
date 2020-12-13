@@ -12,27 +12,31 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td>
-            <select name="status">
-                <option selected="selected">Välj alla</option>
-                @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
-                {
-                    <option>@errandStatus.StatusName</option>
-                }
-            </select>
-        </td>
-        <td>
-            <select name="investigator">
-                <option selected="selected">Välj alla</option>
-                @foreach (Employee employee in Model.Employees)
-                {
-                    <option>@employee.EmployeeName</option>
-                }
-            </select>
-        </td>
-        <td><input class="button" type="submit" value="Hämta lista" /></td>
-        <td><input name="casenumber" /></td>
-        <td><input class="button" type="submit" value="Sök" /></td>
+        <form asp-controller="Manager" asp-action="Filter" type="submit">
+            <td>
+                <select name="errandStatus">
+                    <option selected="selected">Välj alla</option>
+                    @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
+                    {
+                        <option>@errandStatus.StatusName</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <select name="investigator">
+                    <option selected="selected">Välj alla</option>
+                    @foreach (Employee employee in Model.Employees)
+                    {
+                        <option>@employee.EmployeeName</option>
+                    }
+                </select>
+            </td>
+            <td><input class="button" type="submit" value="Hämta lista" /></td>
+        </form>
+        <form asp-controller="Manager" asp-action="Search" type="submit">
+            <td><input name="casenumber" /></td>
+            <td><input class="button" type="submit" value="Sök" /></td>
+        </form>
     </tr>
 </table>
 

@@ -64,11 +64,38 @@ namespace EnvironmentCrime.Controllers
             return View("StartCoordinator", repository);
         }
 
-        public ViewResult Search(ErrandStatus errandStatus, Department department)
+        public ViewResult Filter(string errandStatus, string department)
         {
+            //Sätter värdet till null ifall inget alternativ är valt.
+            if(errandStatus == "Välj alla")
+            {
+                ViewBag.errandStatus = null;
+            }
+            else
+            {
+                ViewBag.errandStatus = errandStatus;
+            }
+            if (department == "Välj alla")
+            {
+                ViewBag.department = null;
+            }
+            else
+            {
+                ViewBag.department = department;
+            }
+            //Sätter söksträngen till null så att den inte körs ifall värdet finns kvar från en tidigare sökning
+            ViewBag.searchString = null;
+            ViewBag.Title = "Ärenden";
+            return View("StartCoordinator", repository);
+        }
 
-            //Kanske kolla upp hur man skickar till en anann vy bara
-            return StartCoordinator();
+        public ViewResult Search(string casenumber)
+        {
+            ViewBag.errandStatus = null;
+            ViewBag.department = null;
+            ViewBag.searchString = casenumber;
+            ViewBag.Title = "Ärenden";
+            return View("StartCoordinator", repository);
         }
     }
 }

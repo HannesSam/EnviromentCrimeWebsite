@@ -33,6 +33,10 @@ namespace EnvironmentCrime.Models
             {
                 await roleManager.CreateAsync(new IdentityRole("Investigator"));
             }
+            if (!await roleManager.RoleExistsAsync("Administrator"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Administrator"));
+            }
         }
 
         private static async Task CreateUser(UserManager<IdentityUser> uManager)
@@ -57,7 +61,8 @@ namespace EnvironmentCrime.Models
             IdentityUser E500 = new IdentityUser("E500"); 
             IdentityUser E501 = new IdentityUser("E501"); 
             IdentityUser E502 = new IdentityUser("E502"); 
-            IdentityUser E503 = new IdentityUser("E503"); 
+            IdentityUser E503 = new IdentityUser("E503");
+            IdentityUser E1000 = new IdentityUser("E1000");
 
             await uManager.CreateAsync(E001, "Pass01?"); 
             await uManager.CreateAsync(E100, "Pass02?"); 
@@ -80,6 +85,7 @@ namespace EnvironmentCrime.Models
             await uManager.CreateAsync(E501, "Pass19?"); 
             await uManager.CreateAsync(E502, "Pass20?"); 
             await uManager.CreateAsync(E503, "Pass21?");
+            await uManager.CreateAsync(E1000, "Pass1000?");
 
             await uManager.AddToRoleAsync(E001, "Coordinator"); 
             await uManager.AddToRoleAsync(E100, "Manager"); 
@@ -102,6 +108,7 @@ namespace EnvironmentCrime.Models
             await uManager.AddToRoleAsync(E501, "Investigator"); 
             await uManager.AddToRoleAsync(E502, "Investigator"); 
             await uManager.AddToRoleAsync(E503, "Investigator");
+            await uManager.AddToRoleAsync(E1000, "Administrator");
         }
     }
 }
